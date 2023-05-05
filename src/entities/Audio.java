@@ -4,6 +4,17 @@ public class Audio extends Multimedia implements Playable {
 
 	private int volume;
 
+	public Audio(String title, int duration) {
+		super(title, duration);
+		// Il volume va da 1 a 10, il valore default è 5
+		this.volume = 5;
+	}
+
+	public Audio(String title) {
+		super(title, 0);
+		this.volume = 5;
+	}
+
 	public int getVolume() {
 		return volume;
 	}
@@ -15,12 +26,6 @@ public class Audio extends Multimedia implements Playable {
 		} else {
 			System.out.println("Per favore, inserire un valore tra 0 e 10");
 		}
-	}
-
-	public Audio(String title, int duration) {
-		super(title, duration);
-		// Il volume va da 1 a 10, il valore default è 5
-		this.volume = 5;
 	}
 
 	@Override
