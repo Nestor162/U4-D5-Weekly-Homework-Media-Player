@@ -22,7 +22,7 @@ public class Main {
 
 		while (true) {
 			do {
-				System.out.println("Seleziona un file:");
+				System.out.println("\n Seleziona un file:");
 				int fileIndex = 0;
 				for (String[] el : multimediaElements) {
 					fileIndex++;
@@ -34,6 +34,7 @@ public class Main {
 			} while (selected > 5 || selected < 0);
 
 			if (selected == 0) {
+				fileSelect.close();
 				break;
 			}
 
