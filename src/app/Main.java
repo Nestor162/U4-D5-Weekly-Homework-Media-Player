@@ -19,39 +19,44 @@ public class Main {
 
 		int selected = 0;
 		Scanner fileSelect = new Scanner(System.in);
-		do {
-			System.out.println("Seleziona un file:");
-			int fileIndex = 0;
-			for (String[] el : multimediaElements) {
-				fileIndex++;
-				System.out.println("\t" + fileIndex + ". " + el[0]);
+
+		while (true) {
+			do {
+				System.out.println("Seleziona un file:");
+				int fileIndex = 0;
+				for (String[] el : multimediaElements) {
+					fileIndex++;
+					System.out.println("\t" + fileIndex + ". " + el[0]);
+				}
+
+				selected = fileSelect.nextInt();
+
+			} while (selected > 5 || selected < 0);
+
+			if (selected == 0) {
+				break;
 			}
 
-			selected = fileSelect.nextInt();
+			String[] mediaSelected = multimediaElements[selected - 1];
 
-		} while (selected > 5 || selected < 0);
+			if (Integer.parseInt(mediaSelected[1]) == 1) {
 
-		String[] mediaSelected = multimediaElements[selected - 1];
+				System.out.println("Iniziando riproduzione audio...");
+				Audio a = new Audio(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
+				a.play();
 
-		if (Integer.parseInt(mediaSelected[1]) == 1) {
+			} else if (Integer.parseInt(mediaSelected[1]) == 2) {
 
-			System.out.println("Iniziando riproduzione audio...");
-			Audio a = new Audio(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
-			a.play();
+				System.out.println("Iniziando riproduzione video...");
+				Video v = new Video(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
+				v.play();
+			} else {
+				System.out.println("Iniziando visualizzazione immagine...");
+				Image i = new Image(mediaSelected[0]);
+				i.show();
+			}
 
-		} else if (Integer.parseInt(mediaSelected[1]) == 2) {
-
-			System.out.println("Iniziando riproduzione video...");
-			Video v = new Video(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
-			v.play();
-		} else {
-			System.out.println("Iniziando visualizzazione immagine...");
-			Image i = new Image(mediaSelected[0]);
-			i.show();
 		}
-
-		fileSelect.close();
-
 	}
 
 	public static String[] MenuStart() {
