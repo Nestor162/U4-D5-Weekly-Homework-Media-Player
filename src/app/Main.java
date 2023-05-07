@@ -2,25 +2,13 @@ package app;
 
 import java.util.Scanner;
 
+import entities.Audio;
+import entities.Image;
+import entities.Video;
+
 public class Main {
 
 	public static void main(String[] args) {
-
-//		Audio a1 = new Audio("Never Gonna Give You Up", 3);
-//		a1.setVolume(1);
-//		a1.volumeUp();
-//		a1.play();
-
-//		Video v1 = new Video("Me at the zoo", 4);
-//		v1.setBrightness(5);
-//		v1.brdecrease();
-//		v1.brdecrease();
-//		v1.play();
-
-//		Image i1 = new Image("kitten.png");
-//		i1.brdecrease();
-//		i1.brdecrease();
-//		i1.show();
 
 		String[][] multimediaElements = new String[5][3];
 
@@ -38,8 +26,31 @@ public class Main {
 				fileIndex++;
 				System.out.println("\t" + fileIndex + ". " + el[0]);
 			}
+
 			selected = fileSelect.nextInt();
-		} while (selected != 0);
+
+		} while (selected > 5 || selected < 0);
+
+		String[] mediaSelected = multimediaElements[selected - 1];
+
+		if (Integer.parseInt(mediaSelected[1]) == 1) {
+
+			System.out.println("Iniziando riproduzione audio...");
+			Audio a = new Audio(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
+			a.play();
+
+		} else if (Integer.parseInt(mediaSelected[1]) == 2) {
+
+			System.out.println("Iniziando riproduzione video...");
+			Video v = new Video(mediaSelected[0], Integer.parseInt(mediaSelected[2]));
+			v.play();
+		} else {
+			System.out.println("Iniziando visualizzazione immagine...");
+			Image i = new Image(mediaSelected[0]);
+			i.show();
+		}
+
+		fileSelect.close();
 
 	}
 
