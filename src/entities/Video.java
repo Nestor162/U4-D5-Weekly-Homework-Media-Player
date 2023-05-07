@@ -49,7 +49,7 @@ public class Video extends Multimedia implements Playable, Brightness {
 				e.printStackTrace();
 			}
 
-			System.out.print("♪♫ " + title + " ♪♬ ");
+			System.out.print("▶ " + title + " ");
 
 			for (int j = 0; j < volume; j++) {
 				System.out.print("!");
